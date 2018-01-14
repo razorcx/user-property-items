@@ -20,22 +20,22 @@ namespace UserPropertyItems
 			InitializeComponent();
 		}
 
-		private void buttonGO_Click(object sender, EventArgs e)
+		private void buttonAllBeams_Click(object sender, EventArgs e)
 		{
 			//get all model objects of type BEAM  (columns removed)
 			ModelObjectEnumerator.AutoFetch = true;
 			var beams = _model.GetAllBeams()
-				.Where(b => b.Type == Beam.BeamTypeEnum.BEAM)
+				.Where(b => b.Type == Beam.BeamTypeEnum.BEAM)  //remove columns
 				.ToList();
 
 			Process(beams);
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void buttonSelect_Click(object sender, EventArgs e)
 		{
 			var beams = _model.PickMultipleObjects()
 				.OfType<Beam>()
-				.Where(b => b.Type == Beam.BeamTypeEnum.BEAM)
+				.Where(b => b.Type == Beam.BeamTypeEnum.BEAM)  //remove columns
 				.ToList();
 
 			Process(beams);
@@ -100,7 +100,7 @@ namespace UserPropertyItems
 					Console.WriteLine($@"{pair.Key}: {values[pair.Key]}");
 				});
 
-				Console.WriteLine("------------------------------------------");
+				Console.WriteLine(@"------------------------------------------");
 			});
 		}
 
